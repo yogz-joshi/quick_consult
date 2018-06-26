@@ -1,0 +1,39 @@
+<!--<% include partials/header%>-->
+<div class="container">
+    
+    <header class="jumbotron text-center blue-grey lighten-5  ">
+        <h1 class="display-4">Welcome!</h1>
+        
+        <p class="lead pt-2 font-bold indigo-text">Welcome to Quick Consult,an online doctor appointment platform in Haldwani. 
+      Just book your schedule here and no need to hassle in line for further token in the clinic.</p>
+      <!--<div style="margin:0 0 auto" <a href="#" class="btn btn-primary btn-lg">Know more</a></div>-->
+    </header>
+    
+    <div class="container">
+    <div class="row text-center">
+        <div class="col-lg-12">
+           <h3>Meet Your Doctor</h3>
+       </div>  
+    
+     <%clinic.forEach(function(clinics){%>
+       
+        <div class="col-md-3 col-sm-6 mb-4">
+              <div class="card" >
+                <img class="card-img-top" style="height:10rem" src="https://www.onlinelogomaker.com/blog/wp-content/uploads/2017/07/medical-logo.jpg" alt="">
+                    <div class="card-body">
+                      <h4 class="card-title"><%=clinics.name%></h4>
+                      <p class="card-text"><%=clinics.speciality%></p>
+                      <p class="card-text">Opening/Closing Time</p>
+                      <p class="card-text"><%=clinics.otime%>AM-<%=clinics.ctime%>PM</p>
+                    </div>
+                        <div class="card-footer">
+                          <a class="btn btn-primary" href="/clinic/<%=clinics._id%>/new">Book Appointment</a>
+                        </div>
+                </div>
+        </div>
+        <% })%>
+    </div>
+
+</div>
+</div>
+<% include partials/footer%>

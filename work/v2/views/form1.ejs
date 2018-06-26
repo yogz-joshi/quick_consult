@@ -1,0 +1,23 @@
+<%include partials/header%>
+
+<div class="container">
+    <div class="jumbotron ">
+        <h3 style="text-align:center">Add Clinic</h3>
+    <div class="form-row">
+        <div style="width:30%; margin: 0 auto;">
+<form action="/clinic" method="POST">
+        <div class="form-group"><input class="form-control" type="text" name="cname" placeholder="Clinic Name" required autofocus></div>
+        <div class="form-group"><input class="form-control" type="text" name="special" placeholder="Speciality" required></div>
+        <div class="form-group"><input class="form-control" type="text" name="openAt" placeholder="Enter opening time"></div>
+        <div class="form-group"><input class="form-control" type="text" name="closeAt" placeholder="Closing time"></div>
+        <div class="form-group"><input class="form-control" type="text" name="lunchHrs" placeholder="Total lunch Break"></div>
+        <div class="form-group"><input class="form-control" type="text" name="lunchAt" placeholder="Lunch Starts At"></div>
+        <div class="form-group"><input class="form-control" type="text" name="lunchOverAt" placeholder="Lunch Ends At"></div>
+        <button class="btn btn-danger btn-block">Submit</button>
+        <a class="btn btn-block btn-primary" href="/clinic">Show Added Clinics</a>
+</form>
+        </div>
+    </div>
+    </div>
+</div>
+<%include partials/footer%>

@@ -1,0 +1,104 @@
+<% include partials/header %>
+<% var lh=clinics.lunch_hrs %>
+<% var oh=clinics.otime%>
+<% var ch=clinics.ctime%>
+<% var la=clinics.lunch_at%>
+<% var lo=clinics.lunch_over%>
+
+
+<% ch= +ch + 12%>
+<% var loop=ch-oh %>
+<% loop=loop-lh %>
+<% la= +la + 12 %>
+<% lo = +lo +12 %>
+
+<!--***********************************************************************-->
+<!--code for fetching current date-->
+<% var today = new Date(); %>
+<% var dd = today.getDate(); %>
+<% var mm = today.getMonth()+1;%> //January is 0!
+<% var yyyy = today.getFullYear(); %>
+
+<% if(dd<10) {%>
+    <% dd = '0'+dd %>
+<% }%> 
+
+<% if(mm<10) { %>
+    <% mm = '0'+mm %>
+<% }%>
+
+
+<% today = yyyy + '-' + mm + '-' + dd; %>
+
+<!--********************************************************************************-->
+<div class="conatiner">
+ <div class="jumbotron">   
+ <div class="p-3 mb-2 bg-success text-white" style="text-align:center"><h3>User Record of <%=clinics.name%></h3></div>
+  
+  <form class="form-row" action="/clinic/<%=clinics._id%>/record" method="POST" >
+   
+      <input  name="search" type="date" value="<%= today%>" autofocus required >
+       <select name="timesearch" >
+       <% for(var i=loop; i>0 ;i--) { %>
+       
+               <% if(oh<=11){%>
+               
+                    <option value="<%=oh%>AM"><%=oh%>AM-<%= (++oh)%>AM</option>
+                
+               <% }else if(oh===12) { %>
+                        <option value="<%=oh%>PM"><%=oh -%>PM-<%= (++oh)-12 %>PM</option>
+                              
+                                    <% }else if((oh<la)){ %>
+                                    <option value="<%= oh -12 %>PM"><%= oh-12-%>PM-<%= (++oh)-12 %>PM</option>
+
+                                    <% }else if((oh>=la) && (oh<lo)){ %>
+                                               <option value="<%= +oh + +lh -12 %>PM"><%= +oh + +lh -12-%>PM-<%= +(++oh) + +lh-12 %>PM</option>
+                                            
+                                            <% } else {%>
+                                                <option value="<%=+oh + +lh -12%>PM"><%=+oh + +lh -12-%>PM-<%= +(++oh) + +lh-12 %>PM</option>
+                                             <% }%>
+              <% }%>
+</select>
+<button class="btn btn-sm btn-danger">Search</button>
+<a class="btn btn-sm btn-primary" href="/clinic/<%=clinics._id%>/record">View All</a>
+  </div>
+  
+</form>
+
+
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Name</th>
+      <th scope="col">Age</th>
+      <th scope="col">Date</th>
+      <th scope="col">Time</th>
+      <th scope="col">Mobile</th>
+    </tr>
+  </thead>
+  <% var c="1"%>
+  <% clinics.users.forEach(function(users){ %>
+  
+  <tbody>
+    <tr>
+      <th scope="row"><%= c++ %></th>
+      <td><%=users.name%></td>
+      <td><%=users.age%></td>
+      <td><%=users.date%></td>
+      <td><%=users.time%></td>
+      <td><%=users.mobile%></td>
+     
+    </tr>
+    <% })%>
+    </tbody>
+    </table>
+
+
+
+
+
+</div>
+
+</div>
+<% include partials/footer%>

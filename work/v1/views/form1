@@ -1,0 +1,7 @@
+<form action="/" method="POST">
+    <input type="text" name="cname" placeholder="clinic name" required>
+    <input type="text" name="special" placeholder="speciality" required>
+    <input type="text" name="openAt" placeholder="opening time" required>
+    <input type="text" name="closeAt" placeholder="closing time" required>
+    <button>Submit</button>
+</form>
